@@ -1,0 +1,18 @@
+{
+  "configurationStatus": "Requires App Store Connect / Google Play and RevenueCat dashboard setup; this manifest does not provision products",
+  "offeringIdentifier": "couples_pass",
+  "makeCurrentOffering": true,
+  "entitlementIdentifier": "sway_premium",
+  "products": [
+    { "packageIdentifier": "$rc_monthly", "suggestedStoreProductIdentifier": "sway_premium_monthly", "subscriptionPeriod": "P1M", "currency": "USD", "price": 2.99 },
+    { "packageIdentifier": "$rc_annual", "suggestedStoreProductIdentifier": "sway_premium_annual", "subscriptionPeriod": "P1Y", "currency": "USD", "price": 23.99 }
+  ],
+  "setup": [
+    "Create or price the real auto-renewing products in each platform's store; existing product IDs can be retained",
+    "Import these products into RevenueCat and attach both to sway_premium",
+    "Attach monthly and annual products to the standard packages in the current couples_pass offering",
+    "Use platform-specific public SDK keys in EXPO_PUBLIC_REVENUECAT_IOS_API_KEY and EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY",
+    "Validate purchase, cancellation, expiration and restore on physical development builds and store sandbox accounts",
+    "Checkout is intentionally blocked for non-USD or mismatched prices until a localized advertising design is approved"
+  ]
+}

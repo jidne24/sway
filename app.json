@@ -5,10 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
-    "splash": {
-      "backgroundColor": "#0F0E17"
-    },
+    "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": false
     },
@@ -19,10 +16,35 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "package": "com.sway.app"
+      "package": "com.sway.app",
+      "permissions": [
+        "android.permission.SCHEDULE_EXACT_ALARM"
+      ]
     },
     "plugins": [
-      "react-native-reanimated"
-    ]
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/sway-splash.png",
+          "imageWidth": 180,
+          "resizeMode": "contain",
+          "backgroundColor": "#F8FAFC"
+        }
+      ],
+      "@react-native-community/datetimepicker",
+      [
+        "expo-notifications",
+        {
+          "defaultChannel": "empathy-reminders",
+          "color": "#28557A"
+        }
+      ],
+      "expo-system-ui"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e252cae7-0cbb-4438-98d3-ab8c715a8d49"
+      }
+    }
   }
 }

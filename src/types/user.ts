@@ -1,26 +1,17 @@
 /**
- * User-related type definitions for Sway.
+ * User domain types for Sway.
  */
 
-/** Roles within a paired couple. */
+/** The two roles within a Sway couple. */
 export type UserRole = 'her' | 'partner';
 
 /** Minimal user profile. */
 export interface UserProfile {
   id: string;
-  displayName: string;
+  name: string;
   role: UserRole;
-  /** The partner code used for pairing. */
-  pairCode: string | null;
-  /** The paired partner's user ID, if linked. */
-  partnerId: string | null;
-  createdAt: string;
-}
-
-/** Authentication state for the current session. */
-export interface AuthState {
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  user: UserProfile | null;
-  accessToken: string | null;
+  partnerId?: string;
+  /** 6-character pairing code (e.g. "SWAY-88"). */
+  pairCode?: string;
+  isPremium: boolean;
 }

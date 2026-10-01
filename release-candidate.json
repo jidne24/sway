@@ -1,0 +1,42 @@
+{
+  "application": "Sway",
+  "verifiedAtUTC": "2026-10-01T16:29:00Z",
+  "status": "Code verified and production JavaScript bundles exported; native/device and live service checks pending",
+  "sdk": 57,
+  "changes": [
+    "Sway wordmark without trailing status dot; status indicator moved beside connection text",
+    "Paired partner Settings and Pairing hide pair-code entry and offer server-confirmed disconnect",
+    "Partner calendar and biological insights use her/she pronouns",
+    "Scrollable premium benefits and both price cards; separate sticky safe-area purchase footer",
+    "Advertised USD prices: monthly 2.99, annual 23.99, annual discount 33 percent; mismatched checkout blocked",
+    "Square responsive SVG ring with bounded strokes and unclipped on-track circular marker",
+    "Hormone insights immediately follow Today's Rhythm",
+    "Dynamic self-directed do/dont guidance from the calculator, gated on sway_premium with a blurred placeholder preview",
+    "Static elevated SOS glow replaces perpetual scale animation",
+    "Her opt-in daily reminder with native time picker, persistent preference, privacy-safe content and logging navigation",
+    "Exactly nine accessible symptoms in three equal rows, preserving all five previous symptom IDs"
+  ],
+  "verification": {
+    "typecheck": "passed: npm run typecheck",
+    "lint": "passed: npm run lint",
+    "regressionTests": { "passed": 52, "failed": 0, "commands": ["npm test", "node tests/architecture.test.cjs"] },
+    "expoDoctor": { "passed": 21, "failed": 0 },
+    "autolinking": "Expo modules and React Native dependencies resolved for iOS and Android, including expo-blur, Reanimated, Worklets, SVG and the native time picker",
+    "database": "Passed isolated PostgreSQL 17 tests using auth stubs: owner-only edits, outsider/anonymous denial, revocation, self-unlink, invalidated invites and data-free access receipts. No production database changes were made.",
+    "performance": { "kind": "host CPU benchmark, not native profiling", "months": 1000, "calendarCells": 44415, "elapsedMs": 898.3, "continuousSOSAnimation": false },
+    "dependencyAudit": { "moderate": 13, "high": 0, "critical": 0, "note": "Transitive UUID advisory in Expo/xcode/ngrok tooling. No forced SDK downgrade or major dependency override applied." }
+  },
+  "bundles": {
+    "ios": { "path": "dist/_expo/static/js/ios/index-7b0166eb7acf38694095b055c0b9acc8.hbc", "sha256": "de09a493b90e3bc35f1785579e49437effd5d420e241e43226691dcdfa2afee2" },
+    "android": { "path": "dist/_expo/static/js/android/index-a6323bf1bbcf5e528447618181eb5601.hbc", "sha256": "25cdcb94337eab47c528013e5f8f526e2fcebeaf10b26de6b5c46e1f1c621664" },
+    "metadata": "dist/metadata.json",
+    "exportCommand": "npx expo export --platform ios --platform android --output-dir dist --max-workers 2"
+  },
+  "beforeSubmission": [
+    "Apply supabase/migrations/202610010002_partner_leave.sql after the authenticated access migration; fresh installations can apply supabase/schema.sql",
+    "Provision the actual store products and current RevenueCat offering using revenuecat/couples-pass.config.json; local configuration does not change live product prices",
+    "Rebuild the native app because expo-blur was added and Worklets was explicitly pinned to the SDK-compatible version",
+    "Perform physical-device visual, large-text, reminder delivery, cold-start, two-device disconnect and sandbox purchase/restore checks",
+    "Generate/sign native store artifacts with EAS. No native build or store submission was started here; the CLI sign-in check was blocked by disk exhaustion. The incomplete EAS CLI download was moved intact to /tmp/sway-incomplete-eas-cli-6bc7bae5c2059953 to restore space. About 267 MB remains on the workspace filesystem."
+  ]
+}

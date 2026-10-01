@@ -25,9 +25,21 @@ Run lint and typecheck before declaring any task done.
 
 ## Navigation & Routing
 
-- Use **Expo Router** for all navigation. Routes live in `src/app/` — every file there is a screen, `_layout.tsx` files define navigators. Keep non-route code (components, hooks, utils) outside `src/app/`.
-- Import `Link`, `router`, and `useLocalSearchParams` from `expo-router`.
-- Docs: https://docs.expo.dev/router/introduction.md
+- Navigation uses **React Navigation** (NOT Expo Router — explicit architectural decision; do not migrate). There is no `src/app/` directory.
+- `src/navigation/RootNavigator.tsx` — root native stack, gated on the persisted `userRole`: `Onboarding` (role selection) until a role is chosen, then `Main` (tab navigator). `Paywall` and `Pairing` are full-screen modals registered unconditionally; Pairing doubles as an onboarding step via route params (`{ context: 'onboarding', role }`).
+- `src/navigation/AppNavigator.tsx` — bottom tabs: `Today` (renders Her or Partner dashboard based on `userRole`), `PartnerGuide`, `Settings`.
+- Route params are typed in `src/navigation/types.ts` (`RootStackParamList`, `MainTabParamList`). Navigate with `useNavigation<NavigationProp<RootStackParamList>>()` from `@react-navigation/native`.
+- Screens must use the shared `Screen` component (`src/components/Screen.tsx`) as their root so safe-area insets are respected on edge-to-edge Android.
+- Docs: https://reactnavigation.org/docs/getting-started
+
+## Backend (Supabase)
+
+- Schema lives in `supabase/schema.sql` — paste it into the Supabase SQL editor. RLS policies are wide open (prototype only; tighten before production).
+- Required env vars: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY` (and `EXPO_PUBLIC_REVENUECAT_API_KEY` for IAP in dev builds).
+- Without the Supabase env vars the app runs in offline demo mode: pairing/sync calls no-op and everything stays local.
+- Auth is anonymous device IDs (`src/utils/deviceId.ts`), stored in AsyncStorage — no login flow.
+- Sync architecture: store actions push updates via `src/services/coupleSync.ts`; `src/hooks/useSupabaseSync.ts` (mounted in `App.tsx`) subscribes to the `couples` row and applies remote changes via `applyRemoteCouple`, which never pushes back (no realtime loops).
+- Docs: https://supabase.com/docs/guides/realtime/postgres-changes
 
 ## Building with EAS
 
